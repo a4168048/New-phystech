@@ -1,0 +1,38 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# дано
+k1 = 5      # Н/м
+k2 = 10     # Н/м
+m = 0.1     # кг
+x0 = 0.01   # м (1 см)
+v0 = 0      # м/с
+
+k_eff = k1 + k2
+omega = np.sqrt(k_eff / m)
+
+t = np.linspace(0, 2, 1000)  # 2 секунды, 1000 точек
+
+x = x0 * np.cos(omega * t)
+v = -x0 * omega * np.sin(omega * t)
+
+plt.figure(figsize=(12, 6))
+
+plt.subplot(2, 1, 1)
+plt.plot(t, x, label='координата $x(t)$')
+plt.title('зависимость координаты тела от времени')
+plt.xlabel('время, с')
+plt.ylabel('координата, м')
+plt.grid(True)
+plt.legend()
+
+plt.subplot(2, 1, 2)
+plt.plot(t, v, label='скорость $v(t)$', color='orange')
+plt.title('зависимость скорости тела от времени')
+plt.xlabel('время, с')
+plt.ylabel('корость, м/с')
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
